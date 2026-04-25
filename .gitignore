@@ -1,0 +1,10 @@
+# downloaded artifacts (filled by install.sh / install.bat)
+*.jar
+*.zip
+*.part
+
+# OS / editor noise
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
