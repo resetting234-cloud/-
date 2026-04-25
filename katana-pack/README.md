@@ -1,89 +1,47 @@
-# MeetionRC 3D Katana Pack
+# MeetionRC Resource Pack — База
 
-Ресурспак, который заменяет 4 ванильных меча на **3D-катаны**:
+Скелет ресурспака для Minecraft. Сюда можно класть свои JSON-модели и
+PNG-текстуры — `pack.mcmeta` и структура папок уже готовы, остаётся положить
+файлы и упаковать в zip.
 
-| Item | → |
-|------|----|
-| `wooden_sword` | Бокен (деревянная катана) |
-| `iron_sword` | Железная катана |
-| `diamond_sword` | Алмазная катана с золотой цубой |
-| `netherite_sword` | Незеритовая катана с золотой цубой |
-
-Версии Minecraft: **1.20.1**, **1.21.5**, **1.21.8** (один пак — все три, через
-`supported_formats: 15..64` в `pack.mcmeta`).
-
-![preview](./preview/render_filled.png)
-
-## Что внутри
-
-Каждая катана = 3 настоящих 3D-кубоида (а не 2D-спрайт растянутый в глубину):
-
-- **рукоять** (柄, _tsuka_) — 2×4×2 вокселя, обмотка-узор
-- **гарда** (鍔, _tsuba_) — 4×1×4 вокселя, плоский диск
-- **клинок** — 1×11×0.5 вокселей, длинный тонкий
-
-Все три кубоида повёрнуты на −45° вокруг Z, чтобы катана лежала по диагонали
-«рукоять снизу-слева → остриё сверху-справа» — это совпадает с ориентацией
-ванильных мечей и ванильные `item/handheld` display-трансформы работают как
-есть.
+Поддерживаемые версии: **1.20.1, 1.21.4, 1.21.5, 1.21.8, 1.21.11**
+(через `supported_formats: 15..64` в `pack.mcmeta`).
 
 ## Структура
 
 ```
 katana-pack/
-├── pack.mcmeta              # supported_formats 15..64
-├── pack.png                 # иконка пака
-├── assets/minecraft/
-│   ├── models/item/
-│   │   ├── wooden_sword.json       # 3D-модель бокена
-│   │   ├── iron_sword.json
-│   │   ├── diamond_sword.json
-│   │   └── netherite_sword.json
-│   ├── textures/item/
-│   │   ├── wooden_sword.png        # 16×32 UV-атлас
-│   │   ├── iron_sword.png
-│   │   ├── diamond_sword.png
-│   │   └── netherite_sword.png
-│   └── items/                       # 1.21.4+ items definitions
-│       ├── wooden_sword.json
-│       ├── iron_sword.json
-│       ├── diamond_sword.json
-│       └── netherite_sword.json
-└── tools/
-    ├── generate.py          # ← перегенерирует все JSON и PNG
-    ├── preview.py           # рисует превью текстур и wireframe
-    └── preview_filled.py    # рисует превью с заливкой (как сверху)
+├── pack.mcmeta          # формат пака + supported_formats
+├── pack.png             # иконка пака (можно заменить)
+└── assets/minecraft/
+    ├── models/item/     # ← клади сюда: wooden_sword.json, iron_sword.json, ...
+    ├── textures/item/   # ← клади сюда: wooden_sword.png, iron_sword.png, ...
+    └── items/           # ← (только 1.21.4+) item definitions, если нужны
 ```
 
-## Установка
+## Как добавить свой меч/предмет
 
-1. Заархивируй папку `katana-pack/` в `katana-pack.zip` (внутри zip-архива
-   на верхнем уровне должны лежать `pack.mcmeta` и `assets/`, а не папка
-   `katana-pack/`).
-2. Перенеси zip в `.minecraft/resourcepacks/`.
-3. В игре: **Options → Resource Packs → Available** → стрелочка вправо у
-   `MeetionRC 3D Katanas` → **Done**.
+1. **Модель** — JSON-файл в `assets/minecraft/models/item/<имя_предмета>.json`.
+   Пример имён: `wooden_sword`, `iron_sword`, `diamond_sword`, `netherite_sword`,
+   `stick`, `bow`, и т.д. — это ванильные ID предметов.
+2. **Текстура** — PNG-файл в `assets/minecraft/textures/item/<имя>.png`.
+   Если используешь UV-атлас, не забудь прописать в JSON-модели
+   `"texture_size": [width, height]`.
+3. **На 1.21.4+** — дополнительно положить `assets/minecraft/items/<имя>.json`
+   с редиректом на твою модель (на 1.20.1/1.21 предыдущих этот файл
+   игнорируется).
 
-## Кастомизация
+## Установка пака в Minecraft
 
-Открой `tools/generate.py` — секция `SCHEMES` в начале файла задаёт цвета
-каждой катаны. Поменял RGB — запустил `python3 tools/generate.py` —
-текстуры и модели перегенерились.
+1. Заархивируй содержимое этой папки в zip (на верхнем уровне zip должны быть
+   `pack.mcmeta` и `assets/`, а не папка `katana-pack/`).
+2. Кинь zip в `%APPDATA%\.minecraft\resourcepacks\` (Windows) или
+   `~/.minecraft/resourcepacks/` (Linux/macOS).
+3. В игре: Esc → Options → Resource Packs → активировать.
 
-Если хочешь поменять геометрию (например, сделать клинок длиннее или цубу
-шире), редактируй `make_model()` ниже в этом же файле — `from`/`to` для
-каждого кубоида.
+## Заметка про pack.mcmeta
 
-## Технические заметки
-
-- **Формат пака**: `pack_format: 15` + `supported_formats: {15..64}`. На 1.20.x
-  Minecraft использует `pack_format`, на 1.21.x — `supported_formats`. Один
-  ресурспак работает на всех трёх версиях.
-- **`assets/minecraft/items/*.json`** — нужны только начиная с 1.21.4 (новая
-  система рендера предметов). На 1.20.1 эти файлы просто игнорируются.
-  В них стоит редирект на ту же модель `minecraft:item/<name>_sword`.
-- **UV-атлас**: 16×32 PNG. Каждой грани кубоида в JSON прописан свой `uv`-регион.
-  `texture_size: [16, 32]` сообщает Minecraft масштаб атласа.
-- **Чем заменять не вышло**: enchanted-glint (свечение от чар) Minecraft
-  применяет к модели автоматически, ничего настраивать не нужно — будет
-  работать с этими 3D-катанами.
+`pack_format: 15` — базовое значение для 1.20+. `supported_formats: {15..64}`
+говорит Minecraft что пак совместим с диапазоном версий. На 1.20.x — игра
+смотрит `pack_format`; на 1.21.x — `supported_formats`. Один пак работает
+на всех целевых версиях без копий.
