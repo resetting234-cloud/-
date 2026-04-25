@@ -1,0 +1,55 @@
+{
+  "_comment": "MeetionRC BoxPvP/Doombox modpack config. Resolved at install time via Modrinth API.",
+  "user_agent": "resetting234-cloud/MeetionRC-installer (resetting234@gmail.com)",
+  "loader": "fabric",
+  "versions": ["1.20.1", "1.21.5", "1.21.8"],
+
+  "mods": [
+    { "slug": "fabric-api",            "category": "core",  "desc": "Fabric API — required by almost every Fabric mod" },
+    { "slug": "yacl",                  "category": "core",  "desc": "Yet Another Config Lib — config UI lib (Sodium, Zoomify, etc.)" },
+    { "slug": "cloth-config",          "category": "core",  "desc": "Cloth Config API — config UI for older mods" },
+
+    { "slug": "sodium",                "category": "fps",   "desc": "Modern rendering engine — biggest single FPS gain" },
+    { "slug": "sodium-extra",          "category": "fps",   "desc": "Extra Sodium toggles (no rain, no clouds, etc.)" },
+    { "slug": "reeses-sodium-options", "category": "fps",   "desc": "Cleaner Sodium options menu" },
+    { "slug": "lithium",               "category": "fps",   "desc": "Server/world tick optimizations" },
+    { "slug": "ferrite-core",          "category": "fps",   "desc": "Reduces RAM usage 30-40%" },
+    { "slug": "entityculling",         "category": "fps",   "desc": "Skips rendering hidden entities (huge boost in crowded boxes)" },
+    { "slug": "immediatelyfast",       "category": "fps",   "desc": "Faster GUI/HUD/text rendering" },
+    { "slug": "dynamic-fps",           "category": "fps",   "desc": "Drops FPS when window unfocused (saves CPU/GPU)" },
+    { "slug": "krypton",               "category": "fps",   "desc": "Network stack optimization (lower ping spikes)" },
+    { "slug": "fastquit",              "category": "fps",   "desc": "Returns to menu instantly when leaving server" },
+    { "slug": "debugify",              "category": "fps",   "desc": "Fixes hundreds of vanilla bugs" },
+    { "slug": "modernfix",             "category": "fps",   "desc": "Comprehensive fixes/perf (1.20.1)" },
+    { "slug": "memoryleakfix",         "category": "fps",   "desc": "Patches memory leaks (1.20.1)" },
+    { "slug": "starlight",             "category": "fps",   "desc": "Faster lighting engine (1.20.1)" },
+    { "slug": "indium",                "category": "fps",   "desc": "FRAPI for Sodium 0.5 (1.20.1)" },
+    { "slug": "smooth-boot-reloaded",  "category": "fps",   "desc": "Faster game startup (1.20.1)" },
+    { "slug": "scalablelux",           "category": "fps",   "desc": "Multithreaded lighting engine (1.21+)" },
+    { "slug": "noisium",               "category": "fps",   "desc": "World-gen / chunk performance" },
+    { "slug": "exordium",              "category": "fps",   "desc": "Caches HUD frames for less GPU work" },
+
+    { "slug": "modmenu",               "category": "qol",   "desc": "Mod list & config screen" },
+    { "slug": "betterf3",              "category": "qol",   "desc": "Cleaner customizable F3 debug screen" },
+    { "slug": "raised",                "category": "pvp",   "desc": "Raises the hotbar above potion HUD (PvP must)" },
+    { "slug": "mouse-tweaks",          "category": "qol",   "desc": "Inventory mouse drag/move (faster pearl/totem swap)" },
+    { "slug": "appleskin",             "category": "qol",   "desc": "Shows hunger/saturation values" },
+    { "slug": "zoomify",               "category": "pvp",   "desc": "Smooth configurable zoom" },
+    { "slug": "chat-heads",            "category": "qol",   "desc": "Player heads next to chat messages — see who killed who" },
+    { "slug": "no-chat-reports",       "category": "qol",   "desc": "Disables chat reporting for privacy" }
+  ],
+
+  "resourcepacks": [
+    { "slug": "better-pvp-fire",        "desc": "Low fire overlay — see opponents through fire" },
+    { "slug": "no-explosion-particles", "desc": "Removes crystal/TNT explosion particles" },
+    { "slug": "no-block-particles",     "desc": "Removes block break/place particles" },
+    { "slug": "no-crystal-particles",   "desc": "Removes end crystal particles specifically" },
+    { "slug": "no-particles-essential", "desc": "Bundle of common particle removals" },
+    { "slug": "yeahlows-pvp-pack",      "desc": "Popular 16x PvP pack (1.21.x)" },
+    { "slug": "haze-pvp",               "desc": "Haze 16x PvP pack" },
+    { "slug": "masters-pvp-pack",       "desc": "Master's PvP 16x pack" },
+    { "slug": "candy-pvp-pack",         "desc": "Candy 16x PvP pack" },
+    { "slug": "clean-pvp-pack",         "desc": "Clean 16x PvP pack (1.20.x)" },
+    { "slug": "bhi",                    "desc": "Block Hitbox Indicator — shows precise hitboxes" }
+  ]
+}
