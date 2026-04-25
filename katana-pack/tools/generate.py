@@ -113,8 +113,12 @@ def make_texture(scheme: dict) -> Image.Image:
     wrap       = scheme["wrap"]
     wrap_hi    = scheme["wrap_hi"]
 
+    # Geometry note: cuboids are
+    #   handle 2 x 4 x 2
+    #   guard  5 x 1 x 5
+    #   blade  2 x 11 x 1   (was 1 x 11 x 0.5 -- too thin to see)
+
     # ----- Handle wrap (2x4) -----
-    # Diagonal weave look: alternating 1-px diagonal bands.
     for dy in range(4):
         for dx in range(2):
             color = wrap_hi if (dx + dy) % 2 == 0 else wrap
@@ -122,36 +126,38 @@ def make_texture(scheme: dict) -> Image.Image:
 
     # ----- Handle cap (2x2) -----
     _solid(px, 2, 0, 2, 2, wrap)
-    _set(px, 2, 0, wrap_hi)  # tiny highlight
+    _set(px, 2, 0, wrap_hi)
 
-    # ----- Guard top/bottom (4x4) -----
-    # Decorative: dark border, lighter center, single highlight pixel.
-    _solid(px, 4, 0, 4, 4, tsuba)
-    _solid(px, 5, 1, 2, 2, tsuba_hi)
-    _set(px, 5, 1, tsuba)  # asymmetry pixel
+    # ----- Guard top/bottom (5x5) -----
+    # Wider tsuba so it reads as the disk between handle and blade.
+    _solid(px, 5, 0, 5, 5, tsuba)
+    _solid(px, 6, 1, 3, 3, tsuba_hi)
+    _set(px, 7, 2, tsuba)  # central rivet
 
-    # ----- Guard side (4x1) -----
-    for dx in range(4):
+    # ----- Guard side (5x1) -----
+    for dx in range(5):
         _set(px, dx, 4, tsuba_hi if dx % 2 == 0 else tsuba)
 
-    # ----- Blade back / mune (1x11) -----
+    # ----- Blade spine / mune (1x11) -----
     for dy in range(11):
         _set(px, 0, 5 + dy, blade_back)
-    # subtle highlight near tip
-    _set(px, 0, 5, blade)
+    _set(px, 0, 5, blade)  # tip highlight
 
-    # ----- Blade face (1x11) -----
+    # ----- Blade face (2x11) -----  body of the blade, both wide faces share this
     for dy in range(11):
-        _set(px, 1, 5 + dy, blade)
+        _set(px, 1, 5 + dy, blade_hi)  # bevel highlight
+        _set(px, 2, 5 + dy, blade)
     _set(px, 1, 5, blade_hi)
+    _set(px, 2, 5, blade_hi)
 
-    # ----- Blade edge / ha (1x11), cutting edge — brightest -----
+    # ----- Blade edge / ha (1x11), brightest -----
     for dy in range(11):
-        _set(px, 2, 5 + dy, blade_hi)
-    _set(px, 2, 15, blade)  # base tinted slightly
+        _set(px, 3, 5 + dy, blade_hi)
+    _set(px, 3, 15, blade)  # base tinted darker
 
-    # ----- Tip cap (1x1) -----
-    _set(px, 3, 5, blade_hi)
+    # ----- Tip cap (2x1) -----
+    _set(px, 4, 5, blade_hi)
+    _set(px, 5, 5, blade)
 
     return img
 
@@ -160,9 +166,9 @@ def make_texture(scheme: dict) -> Image.Image:
 # Model JSON generation
 # ----------------------------------------------------------------------------
 # Geometry (axis-aligned, will be rotated into hand by display transforms):
-#   Handle (tsuka):  2 x 4 x 2  — at [7..9, 0..4, 7..9]
-#   Guard  (tsuba):  4 x 1 x 4  — at [6..10, 4..5, 6..10]
-#   Blade            1 x 11 x 0.5 at [7.5..8.5, 5..16, 7.75..8.25]
+#   Handle (tsuka):  2 x 4 x 2   at [7..9, 0..4, 7..9]
+#   Guard  (tsuba):  5 x 1 x 5   at [5.5..10.5, 4..5, 5.5..10.5]
+#   Blade            2 x 11 x 1  at [7..9, 5..16, 7.5..8.5]
 
 
 def _face(uv, tex="#0", **extra):
@@ -192,7 +198,7 @@ def make_model(name: str) -> dict:
             "particle": tex,
         },
         "elements": [
-            # ---- Handle (tsuka): 2x4x2 ----
+            # ---- Handle (tsuka): 2 x 4 x 2 ----
             {
                 "name": "handle",
                 "from":     [7, 0, 7],
@@ -207,34 +213,37 @@ def make_model(name: str) -> dict:
                     "up":    _face([2, 0, 4, 2]),
                 },
             },
-            # ---- Guard (tsuba): 4x1x4 ----
+            # ---- Guard (tsuba): 5 x 1 x 5 (wider for visibility) ----
             {
                 "name": "guard",
-                "from":     [6, 4, 6],
-                "to":       [10, 5, 10],
+                "from":     [5.5, 4, 5.5],
+                "to":       [10.5, 5, 10.5],
                 "rotation": rot,
                 "faces": {
-                    "north": _face([0, 4, 4, 5]),
-                    "east":  _face([0, 4, 4, 5]),
-                    "south": _face([0, 4, 4, 5]),
-                    "west":  _face([0, 4, 4, 5]),
-                    "down":  _face([4, 0, 8, 4]),
-                    "up":    _face([4, 0, 8, 4]),
+                    "north": _face([0, 4, 5, 5]),
+                    "east":  _face([0, 4, 5, 5]),
+                    "south": _face([0, 4, 5, 5]),
+                    "west":  _face([0, 4, 5, 5]),
+                    "down":  _face([5, 0, 10, 5]),
+                    "up":    _face([5, 0, 10, 5]),
                 },
             },
-            # ---- Blade: 1 wide x 11 tall x 0.5 deep ----
+            # ---- Blade: 2 wide x 11 tall x 1 deep (was 1 x 11 x 0.5) ----
             {
                 "name": "blade",
-                "from":     [7.5, 5,  7.75],
-                "to":       [8.5, 16, 8.25],
+                "from":     [7, 5,  7.5],
+                "to":       [9, 16, 8.5],
                 "rotation": rot,
                 "faces": {
-                    "north": _face([1, 5, 2, 16]),  # face (front)
-                    "south": _face([1, 5, 2, 16]),  # face (back)
-                    "east":  _face([2, 5, 3, 16]),  # cutting edge (ha)
-                    "west":  _face([0, 5, 1, 16]),  # spine (mune)
-                    "up":    _face([3, 5, 4, 6]),   # tip
-                    "down":  _face([3, 5, 4, 6]),   # base
+                    # Wide faces -- 2 wide x 11 tall, body of blade
+                    "north": _face([1, 5, 3, 16]),
+                    "south": _face([1, 5, 3, 16]),
+                    # Edge faces -- 1 wide x 11 tall
+                    "east":  _face([3, 5, 4, 16]),  # ha (cutting edge)
+                    "west":  _face([0, 5, 1, 16]),  # mune (spine)
+                    # Tip / base -- 2 wide x 1 deep
+                    "up":    _face([4, 5, 6, 6]),
+                    "down":  _face([4, 5, 6, 6]),
                 },
             },
         ],
