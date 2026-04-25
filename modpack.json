@@ -2,7 +2,7 @@
   "_comment": "MeetionRC BoxPvP/Doombox modpack config. Resolved at install time via Modrinth API.",
   "user_agent": "resetting234-cloud/MeetionRC-installer (resetting234@gmail.com)",
   "loader": "fabric",
-  "versions": ["1.20.1", "1.21.5", "1.21.8"],
+  "versions": ["1.20.1", "1.21.4", "1.21.5", "1.21.8", "1.21.11"],
 
   "mods": [
     { "slug": "fabric-api",            "category": "core",  "desc": "Fabric API — required by almost every Fabric mod" },
@@ -28,6 +28,11 @@
     { "slug": "scalablelux",           "category": "fps",   "desc": "Multithreaded lighting engine (1.21+)" },
     { "slug": "noisium",               "category": "fps",   "desc": "World-gen / chunk performance" },
     { "slug": "exordium",              "category": "fps",   "desc": "Caches HUD frames for less GPU work" },
+    { "slug": "badoptimizations",      "category": "fps",   "desc": "Bundle of small startup/runtime optimizations" },
+    { "slug": "threadtweak",           "category": "fps",   "desc": "Tunes JVM/Minecraft thread priorities (smoother frames)" },
+    { "slug": "fastchest",             "category": "fps",   "desc": "Faster chest/shulker rendering — big help in storage rooms" },
+    { "slug": "c2me-fabric",           "category": "fps",   "desc": "Concurrent Chunk Management — multithreaded chunk gen/IO" },
+    { "slug": "fast-ip-ping",          "category": "fps",   "desc": "Removes server-list lag spikes when opening multiplayer menu" },
 
     { "slug": "modmenu",               "category": "qol",   "desc": "Mod list & config screen" },
     { "slug": "betterf3",              "category": "qol",   "desc": "Cleaner customizable F3 debug screen" },
@@ -36,7 +41,13 @@
     { "slug": "appleskin",             "category": "qol",   "desc": "Shows hunger/saturation values" },
     { "slug": "zoomify",               "category": "pvp",   "desc": "Smooth configurable zoom" },
     { "slug": "chat-heads",            "category": "qol",   "desc": "Player heads next to chat messages — see who killed who" },
-    { "slug": "no-chat-reports",       "category": "qol",   "desc": "Disables chat reporting for privacy" }
+    { "slug": "no-chat-reports",       "category": "qol",   "desc": "Disables chat reporting for privacy" },
+
+    { "slug": "rescale",               "category": "pvp",   "desc": "Aspect Ratio — растягивает FOV вертикально (стрейф-боксеры юзают)" },
+    { "slug": "swing-through-grass",   "category": "pvp",   "desc": "Атаки бьют через траву/цветы — не залипаешь на блоках" },
+    { "slug": "swinganimation",        "category": "pvp",   "desc": "Кастомизируемая анимация удара (1.8-style swing на 1.21.x)" },
+    { "slug": "health-indicator",      "category": "pvp",   "desc": "HP-числа над мобами/игроками (как Health Indicator)" },
+    { "slug": "healthbar2",            "category": "pvp",   "desc": "Полоски HP над таргетом — fallback к health-indicator" }
   ],
 
   "resourcepacks": [
