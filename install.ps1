@@ -39,7 +39,8 @@ function Resolve-Modrinth {
         [string]$LoaderFilter = 'fabric'   # or 'none'
     )
 
-    $u = "https://api.modrinth.com/v2/project/$Slug/version?game_versions=%5B%22$McVersion%22%5D"
+    $SlugEnc = $Slug -replace '\+','%2B'
+    $u = "https://api.modrinth.com/v2/project/$SlugEnc/version?game_versions=%5B%22$McVersion%22%5D"
     if ($LoaderFilter -eq 'fabric') {
         $u += '&loaders=%5B%22fabric%22%5D'
     }
