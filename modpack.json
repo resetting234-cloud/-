@@ -2,65 +2,434 @@
   "_comment": "MeetionRC BoxPvP/Doombox modpack config. Resolved at install time via Modrinth API.",
   "user_agent": "resetting234-cloud/MeetionRC-installer (resetting234@gmail.com)",
   "loader": "fabric",
-  "versions": ["1.20.1", "1.21.4", "1.21.5", "1.21.8", "1.21.11"],
-
-  "mods": [
-    { "slug": "fabric-api",            "category": "core",  "desc": "Fabric API — required by almost every Fabric mod" },
-    { "slug": "yacl",                  "category": "core",  "desc": "Yet Another Config Lib — config UI lib (Sodium, Zoomify, etc.)" },
-    { "slug": "cloth-config",          "category": "core",  "desc": "Cloth Config API — config UI for older mods" },
-
-    { "slug": "sodium",                "category": "fps",   "desc": "Modern rendering engine — biggest single FPS gain" },
-    { "slug": "sodium-extra",          "category": "fps",   "desc": "Extra Sodium toggles (no rain, no clouds, etc.)" },
-    { "slug": "reeses-sodium-options", "category": "fps",   "desc": "Cleaner Sodium options menu" },
-    { "slug": "lithium",               "category": "fps",   "desc": "Server/world tick optimizations" },
-    { "slug": "ferrite-core",          "category": "fps",   "desc": "Reduces RAM usage 30-40%" },
-    { "slug": "entityculling",         "category": "fps",   "desc": "Skips rendering hidden entities (huge boost in crowded boxes)" },
-    { "slug": "immediatelyfast",       "category": "fps",   "desc": "Faster GUI/HUD/text rendering" },
-    { "slug": "dynamic-fps",           "category": "fps",   "desc": "Drops FPS when window unfocused (saves CPU/GPU)" },
-    { "slug": "krypton",               "category": "fps",   "desc": "Network stack optimization (lower ping spikes)" },
-    { "slug": "fastquit",              "category": "fps",   "desc": "Returns to menu instantly when leaving server" },
-    { "slug": "debugify",              "category": "fps",   "desc": "Fixes hundreds of vanilla bugs" },
-    { "slug": "modernfix",             "category": "fps",   "desc": "Comprehensive fixes/perf (1.20.1)" },
-    { "slug": "memoryleakfix",         "category": "fps",   "desc": "Patches memory leaks (1.20.1)" },
-    { "slug": "starlight",             "category": "fps",   "desc": "Faster lighting engine (1.20.1)" },
-    { "slug": "indium",                "category": "fps",   "desc": "FRAPI for Sodium 0.5 (1.20.1)" },
-    { "slug": "smooth-boot-reloaded",  "category": "fps",   "desc": "Faster game startup (1.20.1)" },
-    { "slug": "scalablelux",           "category": "fps",   "desc": "Multithreaded lighting engine (1.21+)" },
-    { "slug": "noisium",               "category": "fps",   "desc": "World-gen / chunk performance" },
-    { "slug": "exordium",              "category": "fps",   "desc": "Caches HUD frames for less GPU work" },
-    { "slug": "badoptimizations",      "category": "fps",   "desc": "Bundle of small startup/runtime optimizations" },
-    { "slug": "threadtweak",           "category": "fps",   "desc": "Tunes JVM/Minecraft thread priorities (smoother frames)" },
-    { "slug": "fastchest",             "category": "fps",   "desc": "Faster chest/shulker rendering — big help in storage rooms" },
-    { "slug": "c2me-fabric",           "category": "fps",   "desc": "Concurrent Chunk Management — multithreaded chunk gen/IO" },
-    { "slug": "fast-ip-ping",          "category": "fps",   "desc": "Removes server-list lag spikes when opening multiplayer menu" },
-
-    { "slug": "modmenu",               "category": "qol",   "desc": "Mod list & config screen" },
-    { "slug": "betterf3",              "category": "qol",   "desc": "Cleaner customizable F3 debug screen" },
-    { "slug": "raised",                "category": "pvp",   "desc": "Raises the hotbar above potion HUD (PvP must)" },
-    { "slug": "mouse-tweaks",          "category": "qol",   "desc": "Inventory mouse drag/move (faster pearl/totem swap)" },
-    { "slug": "appleskin",             "category": "qol",   "desc": "Shows hunger/saturation values" },
-    { "slug": "zoomify",               "category": "pvp",   "desc": "Smooth configurable zoom" },
-    { "slug": "chat-heads",            "category": "qol",   "desc": "Player heads next to chat messages — see who killed who" },
-    { "slug": "no-chat-reports",       "category": "qol",   "desc": "Disables chat reporting for privacy" },
-
-    { "slug": "rescale",               "category": "pvp",   "desc": "Aspect Ratio — растягивает FOV вертикально (стрейф-боксеры юзают)" },
-    { "slug": "swing-through-grass",   "category": "pvp",   "desc": "Атаки бьют через траву/цветы — не залипаешь на блоках" },
-    { "slug": "swinganimation",        "category": "pvp",   "desc": "Кастомизируемая анимация удара (1.8-style swing на 1.21.x)" },
-    { "slug": "health-indicator",      "category": "pvp",   "desc": "HP-числа над мобами/игроками (как Health Indicator)" },
-    { "slug": "healthbar2",            "category": "pvp",   "desc": "Полоски HP над таргетом — fallback к health-indicator" }
+  "versions": [
+    "1.20.1",
+    "1.21.4",
+    "1.21.5",
+    "1.21.8",
+    "1.21.11"
   ],
-
+  "mods": [
+    {
+      "slug": "fabric-api",
+      "category": "core",
+      "desc": "Fabric API — required by almost every Fabric mod"
+    },
+    {
+      "slug": "yacl",
+      "category": "core",
+      "desc": "Yet Another Config Lib — config UI lib (Sodium, Zoomify, etc.)"
+    },
+    {
+      "slug": "cloth-config",
+      "category": "core",
+      "desc": "Cloth Config API — config UI for older mods"
+    },
+    {
+      "slug": "sodium",
+      "category": "fps",
+      "desc": "Modern rendering engine — biggest single FPS gain"
+    },
+    {
+      "slug": "sodium-extra",
+      "category": "fps",
+      "desc": "Extra Sodium toggles (no rain, no clouds, etc.)"
+    },
+    {
+      "slug": "reeses-sodium-options",
+      "category": "fps",
+      "desc": "Cleaner Sodium options menu"
+    },
+    {
+      "slug": "lithium",
+      "category": "fps",
+      "desc": "Server/world tick optimizations"
+    },
+    {
+      "slug": "ferrite-core",
+      "category": "fps",
+      "desc": "Reduces RAM usage 30-40%"
+    },
+    {
+      "slug": "entityculling",
+      "category": "fps",
+      "desc": "Skips rendering hidden entities (huge boost in crowded boxes)"
+    },
+    {
+      "slug": "immediatelyfast",
+      "category": "fps",
+      "desc": "Faster GUI/HUD/text rendering"
+    },
+    {
+      "slug": "dynamic-fps",
+      "category": "fps",
+      "desc": "Drops FPS when window unfocused (saves CPU/GPU)"
+    },
+    {
+      "slug": "krypton",
+      "category": "fps",
+      "desc": "Network stack optimization (lower ping spikes)"
+    },
+    {
+      "slug": "fastquit",
+      "category": "fps",
+      "desc": "Returns to menu instantly when leaving server"
+    },
+    {
+      "slug": "debugify",
+      "category": "fps",
+      "desc": "Fixes hundreds of vanilla bugs"
+    },
+    {
+      "slug": "modernfix",
+      "category": "fps",
+      "desc": "Comprehensive fixes/perf (1.20.1)"
+    },
+    {
+      "slug": "memoryleakfix",
+      "category": "fps",
+      "desc": "Patches memory leaks (1.20.1)"
+    },
+    {
+      "slug": "starlight",
+      "category": "fps",
+      "desc": "Faster lighting engine (1.20.1)"
+    },
+    {
+      "slug": "indium",
+      "category": "fps",
+      "desc": "FRAPI for Sodium 0.5 (1.20.1)"
+    },
+    {
+      "slug": "smooth-boot-reloaded",
+      "category": "fps",
+      "desc": "Faster game startup (1.20.1)"
+    },
+    {
+      "slug": "scalablelux",
+      "category": "fps",
+      "desc": "Multithreaded lighting engine (1.21+)"
+    },
+    {
+      "slug": "noisium",
+      "category": "fps",
+      "desc": "World-gen / chunk performance"
+    },
+    {
+      "slug": "exordium",
+      "category": "fps",
+      "desc": "Caches HUD frames for less GPU work"
+    },
+    {
+      "slug": "badoptimizations",
+      "category": "fps",
+      "desc": "Bundle of small startup/runtime optimizations"
+    },
+    {
+      "slug": "threadtweak",
+      "category": "fps",
+      "desc": "Tunes JVM/Minecraft thread priorities (smoother frames)"
+    },
+    {
+      "slug": "fastchest",
+      "category": "fps",
+      "desc": "Faster chest/shulker rendering — big help in storage rooms"
+    },
+    {
+      "slug": "c2me-fabric",
+      "category": "fps",
+      "desc": "Concurrent Chunk Management — multithreaded chunk gen/IO"
+    },
+    {
+      "slug": "fast-ip-ping",
+      "category": "fps",
+      "desc": "Removes server-list lag spikes when opening multiplayer menu"
+    },
+    {
+      "slug": "modmenu",
+      "category": "qol",
+      "desc": "Mod list & config screen"
+    },
+    {
+      "slug": "betterf3",
+      "category": "qol",
+      "desc": "Cleaner customizable F3 debug screen"
+    },
+    {
+      "slug": "raised",
+      "category": "pvp",
+      "desc": "Raises the hotbar above potion HUD (PvP must)"
+    },
+    {
+      "slug": "mouse-tweaks",
+      "category": "qol",
+      "desc": "Inventory mouse drag/move (faster pearl/totem swap)"
+    },
+    {
+      "slug": "appleskin",
+      "category": "qol",
+      "desc": "Shows hunger/saturation values"
+    },
+    {
+      "slug": "zoomify",
+      "category": "pvp",
+      "desc": "Smooth configurable zoom"
+    },
+    {
+      "slug": "chat-heads",
+      "category": "qol",
+      "desc": "Player heads next to chat messages — see who killed who"
+    },
+    {
+      "slug": "no-chat-reports",
+      "category": "qol",
+      "desc": "Disables chat reporting for privacy"
+    },
+    {
+      "slug": "rescale",
+      "category": "pvp",
+      "desc": "Aspect Ratio — растягивает FOV вертикально (стрейф-боксеры юзают)"
+    },
+    {
+      "slug": "swing-through-grass",
+      "category": "pvp",
+      "desc": "Атаки бьют через траву/цветы — не залипаешь на блоках"
+    },
+    {
+      "slug": "swinganimation",
+      "category": "pvp",
+      "desc": "Кастомизируемая анимация удара (1.8-style swing на 1.21.x)"
+    },
+    {
+      "slug": "health-indicator",
+      "category": "pvp",
+      "desc": "HP-числа над мобами/игроками (как Health Indicator)"
+    },
+    {
+      "slug": "healthbar2",
+      "category": "pvp",
+      "desc": "Полоски HP над таргетом — fallback к health-indicator"
+    },
+    {
+      "slug": "iris",
+      "category": "fps",
+      "desc": "Iris Shaders — позволяет ставить шейдеры или использовать perf-шейдеры; даёт точный контроль яркости"
+    },
+    {
+      "slug": "bobby",
+      "category": "fps",
+      "desc": "Bobby — кеширует чанки на диск, реальная дальность прорисовки далеко за серверный лимит"
+    },
+    {
+      "slug": "modelfix",
+      "category": "fps",
+      "desc": "Model Gap Fix — убирает прозрачные щели в моделях мобов и предметов"
+    },
+    {
+      "slug": "moreculling",
+      "category": "fps",
+      "desc": "More Culling — агрессивный culling блоков и энтити, заметный буст FPS"
+    },
+    {
+      "slug": "ebe",
+      "category": "fps",
+      "desc": "Enhanced Block Entities — оптимизированный рендер сундуков, баннеров, шалкеров"
+    },
+    {
+      "slug": "sodium-shadowy-path-blocks",
+      "category": "fps",
+      "desc": "Чинит затенение path-блоков с Sodium (мелкая визуальная фикса)"
+    },
+    {
+      "slug": "spark",
+      "category": "fps",
+      "desc": "Spark — профайлер CPU/GPU, видишь что лагает и почему"
+    },
+    {
+      "slug": "mindful-darkness",
+      "category": "pvp",
+      "desc": "Mindful Darkness — снижает чрезмерную яркость в Незере/тёмных биомах, легче ориентироваться"
+    },
+    {
+      "slug": "clear-fog",
+      "category": "pvp",
+      "desc": "No Fog — убирает туман, видишь дальше во всех биомах"
+    },
+    {
+      "slug": "totem-no-shading",
+      "category": "pvp",
+      "desc": "Totem No Shading — убирает зелёное свечение/обводку тотема, не слепит"
+    },
+    {
+      "slug": "smooth-swapping",
+      "category": "pvp",
+      "desc": "Smooth Swapping — плавная анимация смены предметов в хотбаре"
+    },
+    {
+      "slug": "smooth-scrolling-refurbished",
+      "category": "qol",
+      "desc": "Smooth Scrolling — плавный скролл во всех меню/инвентарях"
+    },
+    {
+      "slug": "visuality",
+      "category": "qol",
+      "desc": "Visuality — добавляет плавные визуальные эффекты и улучшает партиклы"
+    },
+    {
+      "slug": "dynamiccrosshair",
+      "category": "pvp",
+      "desc": "Dynamic Crosshair — прицел меняется в зависимости от инструмента/реча, понятнее в бою"
+    },
+    {
+      "slug": "freelook",
+      "category": "pvp",
+      "desc": "Freelook — оглядываться по сторонам не меняя направление движения (хоткей по умолчанию V)"
+    },
+    {
+      "slug": "modern-keystrokes",
+      "category": "pvp",
+      "desc": "Modern Keystrokes — отображение нажатых клавиш на экране (для стримов и анализа боёв)"
+    },
+    {
+      "slug": "justpotionhud",
+      "category": "pvp",
+      "desc": "JustPotionHud — чистое отображение зелий с таймером, заменяет встроенный HUD"
+    },
+    {
+      "slug": "immersive-hotbar",
+      "category": "pvp",
+      "desc": "Immersive Hotbar — компактный и кастомизируемый хотбар"
+    },
+    {
+      "slug": "scoreboardtweaks",
+      "category": "pvp",
+      "desc": "Scoreboard Tweaks — настройка вида серверного скорборда (скрыть, сжать, переместить)"
+    },
+    {
+      "slug": "rrls",
+      "category": "qol",
+      "desc": "Remove Reloading Screen — убирает белую вспышку при перезагрузке ресурспаков"
+    },
+    {
+      "slug": "dark-loading-screen",
+      "category": "qol",
+      "desc": "Dark Loading Screen — тёмный экран загрузки вместо белого, не слепит"
+    },
+    {
+      "slug": "better-stats",
+      "category": "qol",
+      "desc": "Better Statistics Screen — расширенный экран статистики и логирование"
+    },
+    {
+      "slug": "death-coords",
+      "category": "qol",
+      "desc": "Death Coordinates — выводит координаты в чат при смерти"
+    }
+  ],
   "resourcepacks": [
-    { "slug": "better-pvp-fire",        "desc": "Low fire overlay — see opponents through fire" },
-    { "slug": "no-explosion-particles", "desc": "Removes crystal/TNT explosion particles" },
-    { "slug": "no-block-particles",     "desc": "Removes block break/place particles" },
-    { "slug": "no-crystal-particles",   "desc": "Removes end crystal particles specifically" },
-    { "slug": "no-particles-essential", "desc": "Bundle of common particle removals" },
-    { "slug": "yeahlows-pvp-pack",      "desc": "Popular 16x PvP pack (1.21.x)" },
-    { "slug": "haze-pvp",               "desc": "Haze 16x PvP pack" },
-    { "slug": "masters-pvp-pack",       "desc": "Master's PvP 16x pack" },
-    { "slug": "candy-pvp-pack",         "desc": "Candy 16x PvP pack" },
-    { "slug": "clean-pvp-pack",         "desc": "Clean 16x PvP pack (1.20.x)" },
-    { "slug": "bhi",                    "desc": "Block Hitbox Indicator — shows precise hitboxes" }
+    {
+      "slug": "better-pvp-fire",
+      "desc": "Low fire overlay — see opponents through fire"
+    },
+    {
+      "slug": "no-explosion-particles",
+      "desc": "Removes crystal/TNT explosion particles"
+    },
+    {
+      "slug": "no-block-particles",
+      "desc": "Removes block break/place particles"
+    },
+    {
+      "slug": "no-crystal-particles",
+      "desc": "Removes end crystal particles specifically"
+    },
+    {
+      "slug": "no-particles-essential",
+      "desc": "Bundle of common particle removals"
+    },
+    {
+      "slug": "yeahlows-pvp-pack",
+      "desc": "Popular 16x PvP pack (1.21.x)"
+    },
+    {
+      "slug": "haze-pvp",
+      "desc": "Haze 16x PvP pack"
+    },
+    {
+      "slug": "masters-pvp-pack",
+      "desc": "Master's PvP 16x pack"
+    },
+    {
+      "slug": "candy-pvp-pack",
+      "desc": "Candy 16x PvP pack"
+    },
+    {
+      "slug": "clean-pvp-pack",
+      "desc": "Clean 16x PvP pack (1.20.x)"
+    },
+    {
+      "slug": "bhi",
+      "desc": "Block Hitbox Indicator — shows precise hitboxes"
+    },
+    {
+      "slug": "pyron",
+      "desc": "Pyron — снижает высоту огня от первого лица примерно на 40% — лучшая видимость в бою"
+    },
+    {
+      "slug": "shorter-swords-pack",
+      "desc": "Shorter Swords — короткие мечи, не загораживают обзор"
+    },
+    {
+      "slug": "no-vignette-effect",
+      "desc": "No Vignette — убирает тёмные углы экрана, видно всё поле боя"
+    },
+    {
+      "slug": "vegetta777-totem",
+      "desc": "Vegetta777 Totem — пак тотема одного из самых известных испаноязычных стримеров"
+    },
+    {
+      "slug": "rubius-horizons-resource-pack",
+      "desc": "Rubius Horizons — официальный ресурспак серии Horizons от испанского стримера ElRubius"
+    },
+    {
+      "slug": "marlowww+",
+      "desc": "Marlowww+ — фикснутая версия популярного у латиноязычного сообщества Marlowww Vanilla+ пака"
+    },
+    {
+      "slug": "larapvp",
+      "desc": "LaraPvP — тёмно-фиолетовый PvP-пак, любимый в латамских комьюнити, с короткими мечами и чистым GUI"
+    },
+    {
+      "slug": "celesta",
+      "desc": "Celesta 32x — премиум 32x PvP-пак с упором на анимации и читабельность"
+    },
+    {
+      "slug": "clean-pvp-v2",
+      "desc": "Clean PvP V2 — чистый минималистичный PvP-пак"
+    },
+    {
+      "slug": "pvp-smooth",
+      "desc": "Smooth PVP — плавные блоки, чистый GUI и шрифт"
+    },
+    {
+      "slug": "bare-minimum-pvp",
+      "desc": "Bare Minimum PvP — самый минималистичный PvP-пак"
+    },
+    {
+      "slug": "chaos-pvp-pack",
+      "desc": "Chaos PvP — поддерживается всеми последними версиями"
+    },
+    {
+      "slug": "edge-16x-pvp-pack",
+      "desc": "Edge 16x — даёт максимальный FPS и чистый PvP-вид"
+    },
+    {
+      "slug": "black-pvp-x-gold",
+      "desc": "Black PvP x Gold — чёрно-золотая тема для PvP, поддержка 1.21.x"
+    },
+    {
+      "slug": "defaultpvp",
+      "desc": "Default PvP — стандартный ванильный с минимальными PvP-правками"
+    }
   ]
 }

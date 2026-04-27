@@ -43,7 +43,9 @@ resolve_modrinth() {
   local mc="$2"
   local loader_filter="${3:-fabric}"
 
-  local url="https://api.modrinth.com/v2/project/${slug}/version?game_versions=%5B%22${mc}%22%5D"
+  # URL-encode '+' in slug (e.g. "marlowww+")
+  local slug_enc="${slug//+/%2B}"
+  local url="https://api.modrinth.com/v2/project/${slug_enc}/version?game_versions=%5B%22${mc}%22%5D"
   if [[ "$loader_filter" == "fabric" ]]; then
     url="${url}&loaders=%5B%22fabric%22%5D"
   fi
